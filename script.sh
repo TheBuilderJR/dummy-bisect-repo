@@ -3,4 +3,4 @@
 # Author: Test User
 # Date: 2026-02-08
 echo "hello"
-exit 0
+exit 1
