@@ -12,3 +12,6 @@ def to_celsius(fahrenheit):
 
 def to_fahrenheit(celsius):
     return celsius * 9 / 5 + 32
+
+
+# TODO: add kelvin conversion functions

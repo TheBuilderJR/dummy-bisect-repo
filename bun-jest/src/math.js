@@ -16,4 +16,5 @@ function divide(a, b) {
   return a / b;
 }
 
+// TODO: add modulo and power functions
 module.exports = { add, subtract, multiply, divide };
