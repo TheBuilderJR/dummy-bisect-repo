@@ -1,3 +1,4 @@
+// Package math provides basic arithmetic operations.
 package math
 
 import "errors"
