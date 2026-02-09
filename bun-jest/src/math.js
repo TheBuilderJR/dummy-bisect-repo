@@ -1,3 +1,4 @@
+// Math utility functions for basic arithmetic operations
 function add(a, b) {
   return a + b;
 }
