@@ -27,3 +27,7 @@ cd uv-flask && uv run pytest tests/
 ```
 
 A passing run exits 0. A failing run exits non-zero.
+
+## Notes
+
+Requires Python 3.10+ and uv. Flask is used for the web layer, but the bisect target is the utility functions.
