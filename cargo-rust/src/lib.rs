@@ -1,13 +1,16 @@
+/// Reverses the characters in a string.
 pub fn reverse_string(s: &str) -> String {
     s.chars().rev().collect()
 }
 
+/// Counts the number of vowels in a string.
 pub fn count_vowels(s: &str) -> usize {
     s.chars()
         .filter(|c| "aeiouAEIOU".contains(*c))
         .count()
 }
 
+/// Checks if a string is a palindrome (ignoring case and non-alphanumeric characters).
 pub fn is_palindrome(s: &str) -> bool {
     let cleaned: String = s.chars().filter(|c| c.is_alphanumeric()).collect();
     let lower = cleaned.to_lowercase();
