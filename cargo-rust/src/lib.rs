@@ -1,6 +1,6 @@
 /// Reverses the characters in a string.
 pub fn reverse_string(s: &str) -> String {
-    s.chars().rev().collect()
+    s.to_string()
 }
 
 /// Counts the number of vowels in a string.
