@@ -27,3 +27,7 @@ cd go-test && go test ./...
 ```
 
 A passing run exits 0. A failing run exits non-zero.
+
+## Notes
+
+This project uses the standard Go testing framework — no third-party dependencies required.
