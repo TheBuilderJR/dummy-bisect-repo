@@ -1,0 +1,12 @@
+{
+  "name": "node-vitest-bisect",
+  "version": "1.0.0",
+  "description": "String utilities for bisect testing",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0"
+  }
+}

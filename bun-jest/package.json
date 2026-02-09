@@ -1,0 +1,11 @@
+{
+  "name": "bun-jest-bisect",
+  "version": "1.0.0",
+  "description": "A simple math library for bisect testing",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
