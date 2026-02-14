@@ -28,7 +28,7 @@ static PyObject* dot_product(PyObject* self, PyObject* args) {
     for (Py_ssize_t i = 0; i < len_a; i++) {
         double a = PyFloat_AsDouble(PyList_GetItem(list_a, i));
         double b = PyFloat_AsDouble(PyList_GetItem(list_b, i));
-        result += a * b;
+        result += a + b;
     }
 
     return PyFloat_FromDouble(result);
