@@ -39,10 +39,12 @@ git bisect reset
 ## Commit History Overview
 
 ```
+83d518b  Fix python-cpp bisect command to force rebuild on each step
+b63e5d0  Update READMEs with python-cpp bisect instructions
 f8b2b38  Add notes section to python-cpp README
 af07708  Optimize python-cpp dot_product accumulation             ← BUG (python-cpp)
 62d4540  Add doc comments to python-cpp C++ extension
-039259b  Add python-cpp scaffold with C++ extension and passing tests
+039259b  Add python-cpp scaffold with C++ extension and passing tests  ← TESTS PASS (python-cpp)
 dd1fba8  Update READMEs with bisect instructions and add root README
 5614e9c  Add .gitignore for common build artifacts
 09fd017  Add TODO comments for future enhancements
