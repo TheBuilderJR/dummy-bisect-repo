@@ -1,7 +1,9 @@
+// _fastmath: C++ extension module for fast math operations
 #include <Python.h>
 #include <vector>
 #include <cmath>
 
+// Compute the dot product of two equal-length numeric lists
 static PyObject* dot_product(PyObject* self, PyObject* args) {
     PyObject* list_a;
     PyObject* list_b;
@@ -32,6 +34,7 @@ static PyObject* dot_product(PyObject* self, PyObject* args) {
     return PyFloat_FromDouble(result);
 }
 
+// Compute the Euclidean (L2) norm of a numeric list
 static PyObject* euclidean_norm(PyObject* self, PyObject* args) {
     PyObject* list_a;
 
