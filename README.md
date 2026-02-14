@@ -12,6 +12,7 @@ A repository designed for practicing `git bisect`. Each subdirectory simulates a
 | `node-vitest/` | Node + Vitest | `capitalize` lowercases instead | `cd node-vitest && npx vitest run` |
 | `cargo-rust/` | Rust + cargo test | `reverse_string` doesn't reverse | `cd cargo-rust && cargo test` |
 | `go-test/` | Go + go test | `Divide` multiplies instead | `cd go-test && go test ./...` |
+| `python-cpp/` | Python + C++ ext + pytest | `dot_product` adds instead of multiplies | `cd python-cpp && python setup.py develop 2>&1 && python -m pytest tests/` |
 
 ## How Git Bisect Works
 
@@ -23,7 +24,10 @@ git bisect start
 git bisect bad HEAD
 
 # 3. Mark the initial scaffold commit as good (all tests passed here)
+#    For most exercises:
 git bisect good c8a9b34
+#    For python-cpp (which was added later):
+#    git bisect good 039259b
 
 # 4. Automate with the test command for your chosen exercise
 git bisect run sh -c '<test command from table above>'
@@ -35,6 +39,11 @@ git bisect reset
 ## Commit History Overview
 
 ```
+f8b2b38  Add notes section to python-cpp README
+af07708  Optimize python-cpp dot_product accumulation             ← BUG (python-cpp)
+62d4540  Add doc comments to python-cpp C++ extension
+039259b  Add python-cpp scaffold with C++ extension and passing tests
+dd1fba8  Update READMEs with bisect instructions and add root README
 5614e9c  Add .gitignore for common build artifacts
 09fd017  Add TODO comments for future enhancements
 5d1808b  Normalize node-vitest capitalize for consistency       ← BUG (node-vitest)

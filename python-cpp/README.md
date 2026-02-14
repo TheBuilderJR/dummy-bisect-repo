@@ -18,7 +18,7 @@ The `dot_product` function returns incorrect results — `dot_product([1.0, 2.0,
 ```bash
 git bisect start
 git bisect bad HEAD
-git bisect good <scaffold-commit>
+git bisect good 039259b
 git bisect run sh -c 'cd python-cpp && python setup.py develop 2>&1 && python -m pytest tests/'
 ```
 
