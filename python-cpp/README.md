@@ -35,3 +35,9 @@ A passing run exits 0. A failing run exits non-zero.
 > **Spoiler below** — try to find it yourself first!
 
 The first bad commit is the one titled "Optimize python-cpp dot_product accumulation", which changed `result += a * b` to `result += a + b` in the C++ source.
+
+## Notes
+
+- Requires a C++ compiler (`g++`) and Python development headers (`python3-dev`)
+- The `setup.py develop` step is required before running tests — it compiles the C++ extension in-place
+- Unlike the other exercises, this one has a build step that must run during bisect
