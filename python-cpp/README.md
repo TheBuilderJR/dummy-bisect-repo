@@ -19,13 +19,13 @@ The `dot_product` function returns incorrect results — `dot_product([1.0, 2.0,
 git bisect start
 git bisect bad HEAD
 git bisect good 039259b
-git bisect run sh -c 'cd python-cpp && python setup.py develop 2>&1 && python -m pytest tests/'
+git bisect run sh -c 'cd python-cpp && rm -rf build/ *.so && python setup.py develop 2>&1 && python -m pytest tests/'
 ```
 
 ## Test Command
 
 ```bash
-cd python-cpp && python setup.py develop && python -m pytest tests/
+cd python-cpp && rm -rf build/ *.so && python setup.py develop && python -m pytest tests/
 ```
 
 A passing run exits 0. A failing run exits non-zero.
@@ -41,3 +41,4 @@ The first bad commit is the one titled "Optimize python-cpp dot_product accumula
 - Requires a C++ compiler (`g++`) and Python development headers (`python3-dev`)
 - The `setup.py develop` step is required before running tests — it compiles the C++ extension in-place
 - Unlike the other exercises, this one has a build step that must run during bisect
+- The bisect command cleans build artifacts (`rm -rf build/ *.so`) to force a full recompile at each step

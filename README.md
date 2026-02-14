@@ -12,7 +12,7 @@ A repository designed for practicing `git bisect`. Each subdirectory simulates a
 | `node-vitest/` | Node + Vitest | `capitalize` lowercases instead | `cd node-vitest && npx vitest run` |
 | `cargo-rust/` | Rust + cargo test | `reverse_string` doesn't reverse | `cd cargo-rust && cargo test` |
 | `go-test/` | Go + go test | `Divide` multiplies instead | `cd go-test && go test ./...` |
-| `python-cpp/` | Python + C++ ext + pytest | `dot_product` adds instead of multiplies | `cd python-cpp && python setup.py develop 2>&1 && python -m pytest tests/` |
+| `python-cpp/` | Python + C++ ext + pytest | `dot_product` adds instead of multiplies | `cd python-cpp && rm -rf build/ *.so && python setup.py develop 2>&1 && python -m pytest tests/` |
 
 ## How Git Bisect Works
 
