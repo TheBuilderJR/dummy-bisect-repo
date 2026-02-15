@@ -18,4 +18,6 @@ module TextHelpers
   def self.humanize(str)
     str.gsub(/[_-]/, " ").strip.capitalize
   end
+
+  # TODO: add pluralize and singularize helpers
 end
