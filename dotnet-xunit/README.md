@@ -16,7 +16,7 @@ The `Repeat` function is broken — `Repeat("abc", 3)` returns `"abc"` instead o
 ```bash
 git bisect start
 git bisect bad HEAD
-git bisect good <good-commit>
+git bisect good c348aaf
 git bisect run sh -c 'cd dotnet-xunit && dotnet test --no-restore'
 ```
 
@@ -34,4 +34,4 @@ Requires .NET 8.0 SDK. Uses xUnit as the test framework with the standard `dotne
 
 ## Answer
 
-The first bad commit is `<bad-commit>` ("Streamline dotnet-xunit Repeat loop logic"), which changed `i < count` to `i < 1` in the loop condition.
+The first bad commit is `349caf0` ("Streamline dotnet-xunit Repeat loop logic"), which changed `i < count` to `i < 1` in the loop condition.

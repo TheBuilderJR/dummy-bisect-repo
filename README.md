@@ -16,6 +16,7 @@ A repository designed for practicing `git bisect`. Each subdirectory simulates a
 | `pip-django/` | pip + Django + pytest | `word_count` counts chars instead of words | `cd pip-django && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; pip install -r requirements.txt -q && pytest tests/` |
 | `deno-nextjs/` | Deno + Next.js | `chunk` ignores chunk size | `cd deno-nextjs && deno test` |
 | `ruby-rails/` | Ruby + Rails + minitest | `titleize` lowercases instead of title-casing | `cd ruby-rails && bundle install --quiet && bundle exec rake test` |
+| `dotnet-xunit/` | .NET 8 + xUnit | `Repeat` only repeats once | `cd dotnet-xunit && dotnet test` |
 
 ## How Git Bisect Works
 
@@ -37,6 +38,8 @@ git bisect good c8a9b34
 #    git bisect good afabe47
 #    For ruby-rails (which was added later):
 #    git bisect good f04f905
+#    For dotnet-xunit (which was added later):
+#    git bisect good c348aaf
 
 # 4. Automate with the test command for your chosen exercise
 git bisect run sh -c '<test command from table above>'
@@ -48,6 +51,12 @@ git bisect reset
 ## Commit History Overview
 
 ```
+227f3b5  Add TODO comment for future dotnet-xunit enhancements
+349caf0  Streamline dotnet-xunit Repeat loop logic                ← BUG (dotnet-xunit)
+4e9d5d4  Add notes section to dotnet-xunit README
+59f3c4f  Add XML doc comments to dotnet-xunit string utilities
+c348aaf  Add dotnet-xunit scaffold with xUnit tests and passing tests ← TESTS PASS (dotnet-xunit)
+278735a  Update READMEs with deno-nextjs and ruby-rails bisect instructions
 06c67b6  Add TODO comment for future ruby-rails enhancements
 20f29ac  Normalize ruby-rails titleize case handling              ← BUG (ruby-rails)
 af504bb  Add notes section to ruby-rails README
