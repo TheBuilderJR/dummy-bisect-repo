@@ -28,6 +28,10 @@ cd ruby-rails && bundle exec rake test
 
 A passing run exits 0. A failing run exits non-zero.
 
+## Notes
+
+Requires Ruby 3.0+ and Bundler. Rails is used for the web layer, but the bisect target is the text helper utilities.
+
 ## Answer
 
 The first bad commit is `<bad-commit>` ("Normalize ruby-rails titleize case handling"), which changed `str.strip.split.map(&:capitalize).join(" ")` to `str.strip.downcase`.
