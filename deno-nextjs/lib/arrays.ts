@@ -5,8 +5,8 @@
 /** Splits an array into chunks of the given size. */
 export function chunk<T>(arr: T[], size: number): T[][] {
   const result: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
+  for (let i = 0; i < arr.length; i += 1) {
+    result.push(arr.slice(i, i + 1));
   }
   return result;
 }
