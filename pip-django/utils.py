@@ -22,3 +22,6 @@ def excerpt(text, max_words):
 
 def slugify(text):
     return text.lower().strip().replace(" ", "-")
+
+
+# TODO: add markdown-to-plain-text helper
