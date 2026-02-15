@@ -1,3 +1,5 @@
+# Text processing helpers for the Rails application.
+
 module TextHelpers
   def self.titleize(str)
     str.strip.split.map(&:capitalize).join(" ")
