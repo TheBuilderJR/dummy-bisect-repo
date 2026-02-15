@@ -1,3 +1,5 @@
+"""URL configuration for the pip-django text utilities app."""
+
 from django.http import JsonResponse
 from django.urls import path
 
