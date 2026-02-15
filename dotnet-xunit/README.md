@@ -28,6 +28,10 @@ cd dotnet-xunit && dotnet test
 
 A passing run exits 0. A failing run exits non-zero.
 
+## Notes
+
+Requires .NET 8.0 SDK. Uses xUnit as the test framework with the standard `dotnet test` runner.
+
 ## Answer
 
 The first bad commit is `<bad-commit>` ("Streamline dotnet-xunit Repeat loop logic"), which changed `i < count` to `i < 1` in the loop condition.
