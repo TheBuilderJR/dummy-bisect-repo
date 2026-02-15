@@ -40,4 +40,6 @@ public static class StringUtils
     {
         return str.Count(c => c == target);
     }
+
+    // TODO: add PadCenter and Truncate helpers
 }
