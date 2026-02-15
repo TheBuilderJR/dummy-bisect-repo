@@ -22,7 +22,7 @@ public static class StringUtils
     public static string Repeat(string str, int count)
     {
         var result = "";
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < 1; i++)
         {
             result += str;
         }
