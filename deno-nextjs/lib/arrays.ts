@@ -1,3 +1,8 @@
+/**
+ * Array utility functions for data processing.
+ */
+
+/** Splits an array into chunks of the given size. */
 export function chunk<T>(arr: T[], size: number): T[][] {
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
