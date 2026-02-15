@@ -4,7 +4,7 @@
 def word_count(text):
     if not text or not text.strip():
         return 0
-    return len(text.split())
+    return len(text.strip())
 
 
 def truncate(text, max_length):
