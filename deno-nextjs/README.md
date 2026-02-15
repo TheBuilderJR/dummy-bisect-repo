@@ -28,6 +28,10 @@ cd deno-nextjs && deno test
 
 A passing run exits 0. A failing run exits non-zero.
 
+## Notes
+
+This project uses Deno's built-in test runner — no extra dependencies or install step required.
+
 ## Answer
 
 The first bad commit is `<bad-commit>` ("Optimize deno-nextjs chunk iteration step"), which changed `i += size` and `arr.slice(i, i + size)` to `i += 1` and `arr.slice(i, i + 1)`.
