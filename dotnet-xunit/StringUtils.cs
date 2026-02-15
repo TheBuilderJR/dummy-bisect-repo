@@ -1,7 +1,11 @@
 namespace DotnetXunit;
 
+/// <summary>
+/// String utility functions for common text transformations.
+/// </summary>
 public static class StringUtils
 {
+    /// <summary>Converts a dashed or underscored string to camelCase.</summary>
     public static string CamelCase(string str)
     {
         var parts = str.Split('-', '_');
