@@ -16,7 +16,7 @@ The `titleize` function is broken — `titleize("hello world")` returns `"hello 
 ```bash
 git bisect start
 git bisect bad HEAD
-git bisect good <good-commit>
+git bisect good f04f905
 git bisect run sh -c 'cd ruby-rails && bundle install --quiet && bundle exec rake test'
 ```
 
@@ -34,4 +34,4 @@ Requires Ruby 3.0+ and Bundler. Rails is used for the web layer, but the bisect 
 
 ## Answer
 
-The first bad commit is `<bad-commit>` ("Normalize ruby-rails titleize case handling"), which changed `str.strip.split.map(&:capitalize).join(" ")` to `str.strip.downcase`.
+The first bad commit is `20f29ac` ("Normalize ruby-rails titleize case handling"), which changed `str.strip.split.map(&:capitalize).join(" ")` to `str.strip.downcase`.

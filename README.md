@@ -14,6 +14,8 @@ A repository designed for practicing `git bisect`. Each subdirectory simulates a
 | `go-test/` | Go + go test | `Divide` multiplies instead | `cd go-test && go test ./...` |
 | `python-cpp/` | Python + C++ ext + pytest | `dot_product` adds instead of multiplies | `cd python-cpp && rm -rf build/ *.so && python setup.py develop 2>&1 && python -m pytest tests/` |
 | `pip-django/` | pip + Django + pytest | `word_count` counts chars instead of words | `cd pip-django && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; pip install -r requirements.txt -q && pytest tests/` |
+| `deno-nextjs/` | Deno + Next.js | `chunk` ignores chunk size | `cd deno-nextjs && deno test` |
+| `ruby-rails/` | Ruby + Rails + minitest | `titleize` lowercases instead of title-casing | `cd ruby-rails && bundle install --quiet && bundle exec rake test` |
 
 ## How Git Bisect Works
 
@@ -31,6 +33,10 @@ git bisect good c8a9b34
 #    git bisect good 039259b
 #    For pip-django (which was added later):
 #    git bisect good 170db6b
+#    For deno-nextjs (which was added later):
+#    git bisect good afabe47
+#    For ruby-rails (which was added later):
+#    git bisect good f04f905
 
 # 4. Automate with the test command for your chosen exercise
 git bisect run sh -c '<test command from table above>'
@@ -42,6 +48,17 @@ git bisect reset
 ## Commit History Overview
 
 ```
+06c67b6  Add TODO comment for future ruby-rails enhancements
+20f29ac  Normalize ruby-rails titleize case handling              ← BUG (ruby-rails)
+af504bb  Add notes section to ruby-rails README
+00b1690  Add module docstring to ruby-rails text helpers
+f04f905  Add ruby-rails scaffold with Rails app and passing tests ← TESTS PASS (ruby-rails)
+75c2787  Add TODO comment for future deno-nextjs enhancements
+2a95932  Add notes section to deno-nextjs README
+5f3e023  Optimize deno-nextjs chunk iteration step                ← BUG (deno-nextjs)
+a18c75f  Add doc comments to deno-nextjs array utilities
+afabe47  Add deno-nextjs scaffold with Deno app and passing tests ← TESTS PASS (deno-nextjs)
+7967497  Update READMEs with pip-django bisect instructions
 cb5a41a  Add TODO comment for future pip-django enhancements
 3705a1b  Add module docstring to pip-django views
 66005a5  Refine pip-django word_count whitespace handling          ← BUG (pip-django)

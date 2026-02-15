@@ -16,7 +16,7 @@ The `chunk` function is broken — `chunk([1, 2, 3, 4, 5], 2)` returns `[[1],[2]
 ```bash
 git bisect start
 git bisect bad HEAD
-git bisect good <good-commit>
+git bisect good afabe47
 git bisect run sh -c 'cd deno-nextjs && deno test'
 ```
 
@@ -34,4 +34,4 @@ This project uses Deno's built-in test runner — no extra dependencies or insta
 
 ## Answer
 
-The first bad commit is `<bad-commit>` ("Optimize deno-nextjs chunk iteration step"), which changed `i += size` and `arr.slice(i, i + size)` to `i += 1` and `arr.slice(i, i + 1)`.
+The first bad commit is `5f3e023` ("Optimize deno-nextjs chunk iteration step"), which changed `i += size` and `arr.slice(i, i + size)` to `i += 1` and `arr.slice(i, i + 1)`.
