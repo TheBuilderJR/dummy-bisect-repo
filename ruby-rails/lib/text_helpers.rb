@@ -2,7 +2,7 @@
 
 module TextHelpers
   def self.titleize(str)
-    str.strip.split.map(&:capitalize).join(" ")
+    str.strip.downcase
   end
 
   def self.truncate_words(str, count)
