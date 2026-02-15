@@ -13,6 +13,7 @@ A repository designed for practicing `git bisect`. Each subdirectory simulates a
 | `cargo-rust/` | Rust + cargo test | `reverse_string` doesn't reverse | `cd cargo-rust && cargo test` |
 | `go-test/` | Go + go test | `Divide` multiplies instead | `cd go-test && go test ./...` |
 | `python-cpp/` | Python + C++ ext + pytest | `dot_product` adds instead of multiplies | `cd python-cpp && rm -rf build/ *.so && python setup.py develop 2>&1 && python -m pytest tests/` |
+| `pip-django/` | pip + Django + pytest | `word_count` counts chars instead of words | `cd pip-django && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; pip install -r requirements.txt -q && pytest tests/` |
 
 ## How Git Bisect Works
 
@@ -28,6 +29,8 @@ git bisect bad HEAD
 git bisect good c8a9b34
 #    For python-cpp (which was added later):
 #    git bisect good 039259b
+#    For pip-django (which was added later):
+#    git bisect good 170db6b
 
 # 4. Automate with the test command for your chosen exercise
 git bisect run sh -c '<test command from table above>'
@@ -39,6 +42,13 @@ git bisect reset
 ## Commit History Overview
 
 ```
+cb5a41a  Add TODO comment for future pip-django enhancements
+3705a1b  Add module docstring to pip-django views
+66005a5  Refine pip-django word_count whitespace handling          ← BUG (pip-django)
+190a96d  Add notes section to pip-django README
+5108725  Add module docstring to pip-django utils
+170db6b  Add pip-django scaffold with Django app and passing tests ← TESTS PASS (pip-django)
+04d5b8d  Update root README commit history with latest hashes
 83d518b  Fix python-cpp bisect command to force rebuild on each step
 b63e5d0  Update READMEs with python-cpp bisect instructions
 f8b2b38  Add notes section to python-cpp README

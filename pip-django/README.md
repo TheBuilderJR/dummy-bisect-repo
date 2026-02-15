@@ -16,8 +16,8 @@ The `word_count` function is returning wrong results — `word_count("hello worl
 ```bash
 git bisect start
 git bisect bad HEAD
-git bisect good <scaffold-commit>
-git bisect run sh -c 'cd pip-django && pip install -r requirements.txt -q && pytest tests/'
+git bisect good 170db6b
+git bisect run sh -c 'cd pip-django && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; pip install -r requirements.txt -q --break-system-packages && pytest tests/'
 ```
 
 ## Test Command
@@ -34,4 +34,4 @@ Requires Python 3.10+ and pip. Django is used for the web layer, but the bisect 
 
 ## Answer
 
-The first bad commit is `<TBD>` ("Refine pip-django word_count whitespace handling"), which changed `len(text.split())` to `len(text)`.
+The first bad commit is `66005a5` ("Refine pip-django word_count whitespace handling"), which changed `len(text.split())` to `len(text.strip())`.
