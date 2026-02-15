@@ -1,3 +1,6 @@
+"""Text processing utilities for the Django application."""
+
+
 def word_count(text):
     if not text or not text.strip():
         return 0
