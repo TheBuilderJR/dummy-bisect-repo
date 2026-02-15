@@ -28,6 +28,10 @@ cd pip-django && pytest tests/
 
 A passing run exits 0. A failing run exits non-zero.
 
+## Notes
+
+Requires Python 3.10+ and pip. Django is used for the web layer, but the bisect target is the utility functions.
+
 ## Answer
 
 The first bad commit is `<TBD>` ("Refine pip-django word_count whitespace handling"), which changed `len(text.split())` to `len(text)`.
