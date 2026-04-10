@@ -1,106 +1,80 @@
 # Git Bisect Practice Repo
 
-A repository designed for practicing `git bisect`. Each subdirectory simulates a different developer environment where a bug was introduced somewhere in the commit history. Your job: use `git bisect` to find the offending commit.
+This repository is a collection of small, intentionally broken projects for practicing `git bisect`.
 
-## Exercises
+Each exercise lives in its own directory, has one known regression somewhere in the commit history, and includes a focused test command you can use with `git bisect run`.
 
-| Directory | Stack | Bug | Test Command |
-|-----------|-------|-----|-------------|
-| `script.sh` (root) | Bash | `exit 1` instead of `exit 0` | `./script.sh` |
-| `bun-jest/` | Bun + Jest | `multiply` returns wrong result | `cd bun-jest && bun test` |
-| `uv-flask/` | uv + Flask + pytest | `add` returns wrong result | `cd uv-flask && uv run pytest tests/` |
-| `node-vitest/` | Node + Vitest | `capitalize` lowercases instead | `cd node-vitest && npx vitest run` |
-| `cargo-rust/` | Rust + cargo test | `reverse_string` doesn't reverse | `cd cargo-rust && cargo test` |
-| `go-test/` | Go + go test | `Divide` multiplies instead | `cd go-test && go test ./...` |
-| `python-cpp/` | Python + C++ ext + pytest | `dot_product` adds instead of multiplies | `cd python-cpp && rm -rf build/ *.so && python setup.py develop 2>&1 && python -m pytest tests/` |
-| `pip-django/` | pip + Django + pytest | `word_count` counts chars instead of words | `cd pip-django && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; pip install -r requirements.txt -q && pytest tests/` |
-| `deno-nextjs/` | Deno + Next.js | `chunk` ignores chunk size | `cd deno-nextjs && deno test` |
-| `ruby-rails/` | Ruby + Rails + minitest | `titleize` lowercases instead of title-casing | `cd ruby-rails && bundle install --quiet && bundle exec rake test` |
-| `dotnet-xunit/` | .NET 8 + xUnit | `Repeat` only repeats once | `cd dotnet-xunit && dotnet test` |
+## What This Repo Is For
 
-## How Git Bisect Works
+Use this repo if you want to practice:
+
+- narrowing a regression down to the first bad commit
+- automating `git bisect` with a repeatable test command
+- working across different stacks without needing a large codebase
+
+The projects are small on purpose. The point is to learn the bisect workflow, not fight setup complexity.
+
+## Quick Start
+
+1. Pick an exercise from the table below.
+2. Run its setup command if needed.
+3. Confirm the current `HEAD` is failing with the listed test command.
+4. Start a bisect session:
 
 ```bash
-# 1. Start bisecting
 git bisect start
-
-# 2. Mark current state as bad
 git bisect bad HEAD
+git bisect good <known-good-commit>
+git bisect run sh -c '<exercise test command>'
+```
 
-# 3. Mark the initial scaffold commit as good (all tests passed here)
-#    For most exercises:
-git bisect good c8a9b34
-#    For python-cpp (which was added later):
-#    git bisect good 039259b
-#    For pip-django (which was added later):
-#    git bisect good 170db6b
-#    For deno-nextjs (which was added later):
-#    git bisect good afabe47
-#    For ruby-rails (which was added later):
-#    git bisect good f04f905
-#    For dotnet-xunit (which was added later):
-#    git bisect good c348aaf
+5. When Git reports the first bad commit, reset:
 
-# 4. Automate with the test command for your chosen exercise
-git bisect run sh -c '<test command from table above>'
-
-# 5. Git will report the first bad commit. Reset when done:
+```bash
 git bisect reset
 ```
 
-## Commit History Overview
+## Exercises
 
-```
-227f3b5  Add TODO comment for future dotnet-xunit enhancements
-349caf0  Streamline dotnet-xunit Repeat loop logic                ← BUG (dotnet-xunit)
-4e9d5d4  Add notes section to dotnet-xunit README
-59f3c4f  Add XML doc comments to dotnet-xunit string utilities
-c348aaf  Add dotnet-xunit scaffold with xUnit tests and passing tests ← TESTS PASS (dotnet-xunit)
-278735a  Update READMEs with deno-nextjs and ruby-rails bisect instructions
-06c67b6  Add TODO comment for future ruby-rails enhancements
-20f29ac  Normalize ruby-rails titleize case handling              ← BUG (ruby-rails)
-af504bb  Add notes section to ruby-rails README
-00b1690  Add module docstring to ruby-rails text helpers
-f04f905  Add ruby-rails scaffold with Rails app and passing tests ← TESTS PASS (ruby-rails)
-75c2787  Add TODO comment for future deno-nextjs enhancements
-2a95932  Add notes section to deno-nextjs README
-5f3e023  Optimize deno-nextjs chunk iteration step                ← BUG (deno-nextjs)
-a18c75f  Add doc comments to deno-nextjs array utilities
-afabe47  Add deno-nextjs scaffold with Deno app and passing tests ← TESTS PASS (deno-nextjs)
-7967497  Update READMEs with pip-django bisect instructions
-cb5a41a  Add TODO comment for future pip-django enhancements
-3705a1b  Add module docstring to pip-django views
-66005a5  Refine pip-django word_count whitespace handling          ← BUG (pip-django)
-190a96d  Add notes section to pip-django README
-5108725  Add module docstring to pip-django utils
-170db6b  Add pip-django scaffold with Django app and passing tests ← TESTS PASS (pip-django)
-04d5b8d  Update root README commit history with latest hashes
-83d518b  Fix python-cpp bisect command to force rebuild on each step
-b63e5d0  Update READMEs with python-cpp bisect instructions
-f8b2b38  Add notes section to python-cpp README
-af07708  Optimize python-cpp dot_product accumulation             ← BUG (python-cpp)
-62d4540  Add doc comments to python-cpp C++ extension
-039259b  Add python-cpp scaffold with C++ extension and passing tests  ← TESTS PASS (python-cpp)
-dd1fba8  Update READMEs with bisect instructions and add root README
-5614e9c  Add .gitignore for common build artifacts
-09fd017  Add TODO comments for future enhancements
-5d1808b  Normalize node-vitest capitalize for consistency       ← BUG (node-vitest)
-72537f6  Add notes section to uv-flask README
-16a6d6d  Optimize go-test Divide for performance                ← BUG (go-test)
-4335660  Add package comment to go-test math
-e1dd2bf  Simplify cargo-rust reverse_string implementation      ← BUG (cargo-rust)
-3ddf86c  Add doc comments to cargo-rust public functions
-ecbff1e  Update bun-jest multiply with rounding adjustment      ← BUG (bun-jest)
-9fed3cf  Add module comment to node-vitest strings
-e58d699  Refactor uv-flask arithmetic helpers                   ← BUG (uv-flask)
-db54c93  Add notes section to go-test README
-bcdbc41  Add module docstring to bun-jest math utils
-c8a9b34  Add project scaffolds with passing tests               ← ALL TESTS PASS
-cc475dc  Update exit code                                       ← BUG (script.sh)
-db09c77  Add date comment
-ab96665  Add author comment
-4539172  Add description comment
-e77a9a5  Initial commit: add script.sh that echoes hello
+| Exercise | Stack | Regression | Setup | Test Command | Known Good |
+|----------|-------|------------|-------|--------------|------------|
+| `script.sh` | Bash | exits `1` instead of `0` | none | `./script.sh` | `c8a9b34` |
+| `bun-jest/` | Bun + Jest | `multiply` returns the wrong result | `cd bun-jest && bun install` | `cd bun-jest && bun test` | `c8a9b34` |
+| `uv-flask/` | uv + Flask + pytest | `add` subtracts instead of adding | `cd uv-flask && uv sync --extra dev` | `cd uv-flask && uv run pytest tests/` | `c8a9b34` |
+| `node-vitest/` | Node + Vitest | `capitalize` lowercases instead | `cd node-vitest && npm install` | `cd node-vitest && npx vitest run` | `c8a9b34` |
+| `cargo-rust/` | Rust + cargo test | `reverse_string` stops reversing | `cd cargo-rust` | `cd cargo-rust && cargo test` | `c8a9b34` |
+| `go-test/` | Go + go test | `Divide` multiplies instead of dividing | `cd go-test` | `cd go-test && go test ./...` | `c8a9b34` |
+| `python-cpp/` | Python + C++ extension + pytest | `dot_product` adds instead of multiplies | `cd python-cpp` | `cd python-cpp && rm -rf build/ *.so && python setup.py develop 2>&1 && python -m pytest tests/` | `039259b` |
+| `pip-django/` | pip + Django + pytest | `word_count` counts characters instead of words | `cd pip-django && pip install -r requirements.txt -q` | `cd pip-django && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; pytest tests/` | `170db6b` |
+| `deno-nextjs/` | Deno + Next.js | `chunk` ignores the requested chunk size | `cd deno-nextjs` | `cd deno-nextjs && deno test` | `afabe47` |
+| `ruby-rails/` | Ruby + Rails + minitest | `titleize` lowercases instead of title-casing | `cd ruby-rails && bundle install --quiet` | `cd ruby-rails && bundle exec rake test` | `f04f905` |
+| `dotnet-xunit/` | .NET 8 + xUnit | `Repeat` only repeats once | `cd dotnet-xunit` | `cd dotnet-xunit && dotnet test` | `c348aaf` |
+
+## Example
+
+To bisect the bug in `go-test/`:
+
+```bash
+git bisect start
+git bisect bad HEAD
+git bisect good c8a9b34
+git bisect run sh -c 'cd go-test && go test ./...'
 ```
 
-Each exercise directory has its own README with setup instructions, the exact bisect commands, and the answer.
+Git will checkout commits for you, run the test each time, and stop at the first bad commit.
+
+## Notes
+
+- Some exercises were added later in history, so their known-good commit is newer than `c8a9b34`.
+- The `python-cpp/` exercise rebuilds the extension on each bisect step so you do not get stale compiled artifacts.
+- Each exercise directory has its own `README.md` with setup details, bisect commands, and the answer if you want to check your work.
+
+## Where To Go Next
+
+If you want a guided exercise, start with one of these:
+
+- `script.sh` for the fastest possible bisect
+- `go-test/` or `bun-jest/` for a simple test-driven workflow
+- `python-cpp/` for a case where build artifacts matter during bisect
+
+If you want the solutions, open the README inside the exercise directory you chose.
